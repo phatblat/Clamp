@@ -1,6 +1,6 @@
 /*
- * build.gradld.kts
- * KotlinTemplate
+ * build.gradle.kts
+ * Clamp
  */
 
 import org.gradle.api.JavaVersion.*

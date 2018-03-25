@@ -27,7 +27,6 @@ plugins {
     `maven-publish`
 
     // Gradle plugin portal - https://plugins.gradle.org/
-    id("at.phatbl.tube") version "0.0.1"
     id("com.jfrog.bintray") version "1.8.0"
     id("com.gradle.plugin-publish") version "0.9.10"
     id("org.jetbrains.kotlin.jvm") version "1.2.30"

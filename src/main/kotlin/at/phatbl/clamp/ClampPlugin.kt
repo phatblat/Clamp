@@ -1,6 +1,6 @@
 package at.phatbl.clamp
 
-import at.phatbl.clamp.tasks.WrapperTask
+import at.phatbl.clamp.tasks.wrapper.WrapperTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 

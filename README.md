@@ -1,5 +1,7 @@
 # 🗜 Clamp
 
+[![Tube](https://jenkins.log-g.co/buildStatus/icon?job=phatblat/Clamp/master)](https://jenkins.log-g.co/job/phatblat/job/Clamp/job/master/)
+
 Reducing [Gradle](https://gradle.org/) script boilerplate.
 
 # 📄 License

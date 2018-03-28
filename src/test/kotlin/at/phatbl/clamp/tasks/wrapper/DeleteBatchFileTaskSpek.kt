@@ -2,12 +2,10 @@ package at.phatbl.clamp.tasks.wrapper
 
 import at.phatbl.clamp.tasks.wrapper.util.executeActions
 import org.gradle.api.Project
-import org.gradle.api.tasks.wrapper.Wrapper
 import org.gradle.testfixtures.ProjectBuilder
 import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.describe
 import org.jetbrains.spek.api.dsl.it
-import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue

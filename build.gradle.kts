@@ -201,6 +201,8 @@ bintray {
         websiteUrl = "$projectUrl"
         issueTrackerUrl = "$projectUrl/issues"
         vcsUrl = "$projectUrl.git"
+        githubRepo = "phatblat/$projectName"
+        githubReleaseNotesFile = "CHANGELOG.md"
         setLicenses("$license")
         setLabels("gradle", "plugin", "wrapper")
         publicDownloadNumbers = true

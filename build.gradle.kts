@@ -223,6 +223,7 @@ bintray {
 // Workaround to eliminate warning from bintray plugin, which assumes the "maven" plugin is being used.
 // https://github.com/bintray/gradle-bintray-plugin/blob/master/src/main/groovy/com/jfrog/bintray/gradle/BintrayPlugin.groovy#L85
 val install by tasks.creating(Upload::class)
+install.enabled = false
 
 val deploy by tasks.creating {
     description = "Deploys the artifact."

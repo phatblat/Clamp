@@ -40,8 +40,13 @@ plugins {
 /* -------------------------------------------------------------------------- */
 
 val artifactName by project
+val projectName = "$artifactName".capitalize()
 val javaPackage = "$group.$artifactName"
 val pluginClass by project
+val projectUrl by project
+val tags by project
+val labels = "$tags".split(",")
+val license by project
 
 val jvmTarget = JavaVersion.VERSION_1_8.toString()
 val spekVersion by project
@@ -134,14 +139,14 @@ gradlePlugin.plugins.create("$artifactName") {
 }
 
 pluginBundle {
-    website = "https://github.com/phatblat/ShellExec"
-    vcsUrl = "https://github.com/phatblat/ShellExec"
-    description = "Exec base task alternative which runs commands in a Bash shell."
-    tags = mutableListOf("gradle", "exec", "shell", "bash", "kotlin")
+    website = "$projectUrl"
+    vcsUrl = "$projectUrl"
+    description = project.description
+    tags = labels
 
-    plugins.create("shellexec") {
+    plugins.create("$artifactName") {
         id = javaPackage
-        displayName = "ShellExec plugin"
+        displayName = "$projectName plugin"
     }
     mavenCoordinates.artifactId = "$artifactName"
 }
@@ -189,18 +194,18 @@ bintray {
     dryRun = false
     publish = true
     pkg.apply {
-        repo = "maven-open-source"
-        name = "ShellExec"
-        desc = "Gradle plugin with a simpler Exec task."
-        websiteUrl = "https://github.com/phatblat/ShellExec"
-        issueTrackerUrl = "https://github.com/phatblat/ShellExec/issues"
-        vcsUrl = "https://github.com/phatblat/ShellExec.git"
-        setLicenses("MIT")
-        setLabels("gradle", "plugin", "exec", "shell", "bash")
+        repo = property("bintray.repo") as String
+        name = projectName
+        desc = project.description
+        websiteUrl = "$projectUrl"
+        issueTrackerUrl = "$projectUrl/issues"
+        vcsUrl = "$projectUrl.git"
+        setLicenses("$license")
+        setLabels("gradle", "plugin", "wrapper")
         publicDownloadNumbers = true
         version.apply {
             name = project.version.toString()
-            desc = "ShellExec Gradle Plugin ${project.version}"
+            desc = "$projectName Gradle Plugin ${project.version}"
             released = Date().toString()
             vcsTag = project.version.toString()
             attributes = mapOf("gradle-plugin" to "${project.group}:$artifactName:$version")

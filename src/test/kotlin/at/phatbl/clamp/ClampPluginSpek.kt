@@ -1,6 +1,5 @@
 package at.phatbl.clamp
 
-import at.phatbl.clamp.tasks.wrapper.util.executeActions
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.testfixtures.ProjectBuilder
@@ -10,12 +9,10 @@ import org.jetbrains.spek.api.dsl.it
 import org.jetbrains.spek.api.dsl.on
 import java.io.File
 import kotlin.test.assertEquals
-import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
-import kotlin.test.assertTrue
 
 /** Changes the os.name system property. */
-fun changeOS(name: String) = System.setProperty("os.name", name)
+fun changeOS(name: String) = System.setProperty("os.name", name) ?: ""
 
 /** Restores the os.name system property. */
 fun restoreOS() = System.setProperty("os.name", "Mac OS X") ?: ""

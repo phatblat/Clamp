@@ -1,6 +1,5 @@
 package at.phatbl.clamp.tasks.wrapper
 
-import at.phatbl.clamp.ClampPlugin
 import at.phatbl.clamp.tasks.wrapper.util.executeActions
 import org.gradle.api.Project
 import org.gradle.testfixtures.ProjectBuilder

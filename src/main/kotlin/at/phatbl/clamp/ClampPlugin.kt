@@ -20,15 +20,9 @@ class ClampPlugin : Plugin<Project> {
         project = nullableProject ?: return
 
         val wrapper = project.tasks.create("wrapper", WrapperTask::class.java)
-
-        val os = System.getProperty("os.name")
-        println(os)
-        val deleteFileTask = when (os.toLowerCase().contains("win")) {
-            // Windows
-            true ->
-                project.tasks.create("deleteShellScript", DeleteShellScriptFileTask::class.java)
-            false ->
-                project.tasks.create("deleteBatchFile", DeleteBatchFileTask::class.java)
+        val deleteFileTask = when (System.getProperty("os.name").toLowerCase().contains("win")) {
+            true  -> project.tasks.create("deleteShellScript", DeleteShellScriptFileTask::class.java)
+            false -> project.tasks.create("deleteBatchFile", DeleteBatchFileTask::class.java)
         }
         wrapper.finalizedBy(deleteFileTask)
     }

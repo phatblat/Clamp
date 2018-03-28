@@ -24,6 +24,7 @@ import java.util.*
 plugins {
     // Gradle built-in
     `java-gradle-plugin`
+    maven // only applied to make bintray happy
     `maven-publish`
 
     // Gradle plugin portal - https://plugins.gradle.org/
@@ -222,8 +223,12 @@ bintray {
 
 // Workaround to eliminate warning from bintray plugin, which assumes the "maven" plugin is being used.
 // https://github.com/bintray/gradle-bintray-plugin/blob/master/src/main/groovy/com/jfrog/bintray/gradle/BintrayPlugin.groovy#L85
-val install by tasks.creating(Upload::class)
-install.enabled = false
+val install by tasks
+install.doFirst {
+    val maven = project.convention.plugins["maven"] as MavenPluginConvention
+    maven.mavenPomDir = file("$buildDir/publications/mavenJava")
+    logger.info("Configured maven plugin to use same output dir as maven-publish: ${maven.mavenPomDir}")
+}
 
 val deploy by tasks.creating {
     description = "Deploys the artifact."

@@ -30,7 +30,7 @@ plugins {
     // Gradle plugin portal - https://plugins.gradle.org/
     id("com.jfrog.bintray") version "1.8.0"
     id("com.gradle.plugin-publish") version "0.9.10"
-    id("org.jetbrains.kotlin.jvm") version "1.2.30"
+    id("org.jetbrains.kotlin.jvm") version "1.2.31"
 
     // Custom handling in pluginManagement
     id("org.junit.platform.gradle.plugin") version "1.1.0"

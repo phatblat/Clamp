@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- ⬆️ Kotlin (1.2.31). #4
+
 ## 1.0.0
 
 - 🐘🎁 Pre-configured Gradle `wrapper` task. #1

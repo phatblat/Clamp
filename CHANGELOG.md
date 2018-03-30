@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- 🔌 Apply Base plugin. #5
 - ⬆️ Kotlin (1.2.31). #4
 
 ## 1.0.0

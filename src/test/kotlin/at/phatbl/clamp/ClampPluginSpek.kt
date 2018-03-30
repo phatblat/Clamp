@@ -39,6 +39,11 @@ object ClampPluginSpek : Spek({
             //at org.gradle.api.tasks.wrapper.Wrapper.generate(Wrapper.java:126)
             project.file("gradle/wrapper").mkdirs()
         }
+        it("applies the base plugin") {
+            setup(null)
+            val basePlugin = project.plugins.findPlugin("base")
+            assertNotNull(basePlugin)
+        }
         it("creates the wrapper task") {
             setup(null)
             assertNotNull(task)

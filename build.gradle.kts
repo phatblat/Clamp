@@ -49,6 +49,7 @@ val tags by project
 val labels = "$tags".split(",")
 val license by project
 
+val gradleWrapperVersion by project
 val jvmTarget = JavaVersion.VERSION_1_8.toString()
 val spekVersion by project
 
@@ -63,6 +64,16 @@ val junitPlatformVersion: String? by extra {
 /* -------------------------------------------------------------------------- */
 // 👪 Dependencies
 /* -------------------------------------------------------------------------- */
+
+val removeBatchFile by tasks.creating(Delete::class) { delete("gradlew.bat") }
+
+tasks {
+   "wrapper"(Wrapper::class) {
+       gradleVersion = "$gradleWrapperVersion"
+       distributionType = Wrapper.DistributionType.ALL
+       finalizedBy(removeBatchFile)
+   }
+}
 
 repositories.jcenter()
 

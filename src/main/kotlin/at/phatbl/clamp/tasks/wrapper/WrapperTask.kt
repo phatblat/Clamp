@@ -10,7 +10,7 @@ open class WrapperTask : Wrapper() {
         description = "Upstalls the Gradle wrapper."
         group = "🗜 Clamp"
 
-        gradleVersion = "4.6"
+        gradleVersion = "4.7"
         distributionType = DistributionType.ALL
     }
 }

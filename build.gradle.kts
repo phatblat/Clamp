@@ -7,15 +7,15 @@
 // 🛃 Imports
 /* -------------------------------------------------------------------------- */
 
+import java.util.Date
 import org.gradle.api.JavaVersion.*
 import org.gradle.internal.impldep.org.junit.experimental.categories.Categories.CategoryFilter.include
 import org.gradle.kotlin.dsl.*
+import org.gradle.plugin.devel.GradlePluginDevelopmentExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.preprocessor.mkdirsOrFail
 import org.junit.platform.console.options.Details
 import org.junit.platform.engine.discovery.ClassNameFilter.includeClassNamePatterns
-import org.gradle.plugin.devel.GradlePluginDevelopmentExtension
-import org.jetbrains.kotlin.preprocessor.mkdirsOrFail
-import java.util.Date
 
 /* -------------------------------------------------------------------------- */
 // 🔌 Plugins
@@ -40,17 +40,18 @@ plugins {
 // 📋 Properties
 /* -------------------------------------------------------------------------- */
 
-val artifactName by project
-val projectName = "$artifactName".capitalize()
+val artifactName: String by project
+val projectName = artifactName.capitalize()
 val javaPackage = "$group.$artifactName"
-val pluginClass by project
-val projectUrl by project
-val tags by project
-val labels = "$tags".split(",")
-val license by project
+val pluginClass: String by project
+val projectUrl: String by project
+val tags: String by project
+val labels = tags.split(",")
+val license: String by project
 
+val gradleWrapperVersion: String by project
 val jvmTarget = JavaVersion.VERSION_1_8.toString()
-val spekVersion by project
+val spekVersion: String by project
 
 // This is necessary to make the plugin version accessible in other places
 // https://stackoverflow.com/questions/46053522/how-to-get-ext-variables-into-plugins-block-in-build-gradle-kts/47507441#47507441
@@ -63,6 +64,16 @@ val junitPlatformVersion: String? by extra {
 /* -------------------------------------------------------------------------- */
 // 👪 Dependencies
 /* -------------------------------------------------------------------------- */
+
+val removeBatchFile by tasks.creating(Delete::class) { delete("gradlew.bat") }
+
+tasks {
+   "wrapper"(Wrapper::class) {
+       gradleVersion = "$gradleWrapperVersion"
+       distributionType = Wrapper.DistributionType.ALL
+       finalizedBy(removeBatchFile)
+   }
+}
 
 repositories.jcenter()
 
@@ -130,22 +141,22 @@ configure<BasePluginConvention> {
     archivesBaseName = javaPackage
 }
 
-gradlePlugin.plugins.create("$artifactName") {
+gradlePlugin.plugins.create(artifactName) {
     id = javaPackage
     implementationClass = "$javaPackage.$pluginClass"
 }
 
 pluginBundle {
-    website = "$projectUrl"
-    vcsUrl = "$projectUrl"
+    website = projectUrl
+    vcsUrl = projectUrl
     description = project.description
     tags = labels
 
-    plugins.create("$artifactName") {
+    plugins.create(artifactName) {
         id = javaPackage
         displayName = "$projectName plugin"
     }
-    mavenCoordinates.artifactId = "$artifactName"
+    mavenCoordinates.artifactId = artifactName
 }
 
 /* -------------------------------------------------------------------------- */
@@ -175,7 +186,7 @@ publishing {
     (publications) {
         "mavenJava"(MavenPublication::class) {
             from(components["java"])
-            artifactId = "$artifactName"
+            artifactId = artifactName
 
             artifact(sourcesJar) { classifier = "sources" }
             artifact(javadocJar) { classifier = "javadoc" }
@@ -194,12 +205,12 @@ bintray {
         repo = property("bintray.repo") as String
         name = projectName
         desc = project.description
-        websiteUrl = "$projectUrl"
+        websiteUrl = projectUrl
         issueTrackerUrl = "$projectUrl/issues"
         vcsUrl = "$projectUrl.git"
         githubRepo = "phatblat/$projectName"
         githubReleaseNotesFile = "CHANGELOG.md"
-        setLicenses("$license")
+        setLicenses(license)
         setLabels("gradle", "plugin", "wrapper")
         publicDownloadNumbers = true
         version.apply {

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.1.0
+
 - 🐘⬆️ Gradle (4.7). #7
 - 🔌 Apply Base plugin. #5
 - ⬆️ Kotlin (1.2.31). #4

@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 1.1.0
+
+- ⬆️ JUnit Platform (1.2.0). #8
+- ⬆️ Kotlin (1.2.41). #8
 - 🐘⬆️ Gradle (4.7). #7
 - 🔌 Apply Base plugin. #5
 - ⬆️ Kotlin (1.2.31). #4

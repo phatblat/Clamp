@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- ⬆️🐘️ Gradle (4.8). #9
+- ⬆️ Kotlin (1.2.50). #9
+
 ## 1.1.0
 
 - ⬆️ JUnit Platform (1.2.0). #8

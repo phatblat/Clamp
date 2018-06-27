@@ -10,7 +10,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
-object DeleteBatchFileTaskSpek : Spek({
+object ConfigureWrapperTaskSpek : Spek({
     describe("Delete Batch File Task") {
         lateinit var project: Project
         lateinit var task: DeleteBatchFileTask
@@ -30,7 +30,3 @@ object DeleteBatchFileTaskSpek : Spek({
         }
     }
 })
-# ✅ Spek (0/2)
-
-- [ ] Introduce specification style
-- [ ] Introduce Gherkin style DSL · Issue #396

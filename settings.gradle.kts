@@ -21,3 +21,6 @@ pluginManagement {
         }
     }
 }
+
+// https://docs.gradle.org/4.8.1/userguide/publishing_maven.html#publishing_maven:deferred_configuration
+enableFeaturePreview("STABLE_PUBLISHING")
